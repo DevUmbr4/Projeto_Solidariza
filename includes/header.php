@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+<link rel="stylesheet" href="./assets/css/style.css">
 
 <head>
     <meta charset="UTF-8">
@@ -14,7 +15,7 @@
             <nav class="navbar">
                 <div class="logo">
                     <a href="index.php">
-                        <img src="../assets/img/logo.png" alt="Logo Solidariza">
+                        <img src="./assets/img/logo.png" alt="Logo Solidariza">
                         <h1>Projeto Solidariza</h1>
                     </a>
                 </div>
@@ -25,7 +26,7 @@
                 </button>
                 <ul class="menu-links">
                     <li><a href="index.php">Início</a></li>
-                    <li><a href="#">Campanhas</a></li>
+                    <li><a href="#campanhas">Campanhas</a></li>
                     <li><a href="login.php">Entrar</a></li>
                     <li><a href="cadastro.php">Cadastrar</a></li>
                 </ul>

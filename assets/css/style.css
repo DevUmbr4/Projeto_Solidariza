@@ -51,34 +51,35 @@ ul {
 }
 
 /* ==========================================================================
-   3. CABEÇALHO E NAVEGAÇÃO (NAVBAR)
+   3. CABEÇALHO E NAVEGAÇÃO (NAVBAR) - CONSOLIDADO
    ========================================================================== */
 .cabecalho-principal {
     background-color: var(--cor-branco);
     border-bottom: var(--borda-padrao);
     box-shadow: var(--sombra-leve);
-    position: sticky; /* Mantém o menu no topo ao rolar a página */
+    position: sticky; 
     top: 0;
     z-index: 100;
 }
 
 .navbar {
     display: flex;
-    justify-content: space-between; /* Separa a logo dos links */
-    align-items: center;            /* Centraliza verticalmente */
-    max-width: 1200px;              /* Largura máxima do conteúdo */
-    margin: 0 auto;                 /* Centraliza a navbar na tela */
+    justify-content: space-between; 
+    align-items: center;            
+    max-width: 1200px;              
+    margin: 0 auto;                 
     padding: 15px 20px;
 }
 
+/* --- LOGO --- */
 .logo a {
-    display:flex;
-    align-items:center;
+    display: flex;
+    align-items: center;
     gap: 12px;
 }
 
 .logo img {
-    height: 50px; /* Ajuste o tamanho do logo conforme necessário */
+    height: 50px;
     width: auto;
     display: block;
 }
@@ -89,15 +90,17 @@ ul {
     font-weight: 700;
 }
 
+/* --- MENU LINKS (DESKTOP) --- */
 .menu-links {
-    display: flex;
+    display: flex;       /* Garante que o menu apareça no Desktop */
     align-items: center;
-    gap: 30px; /* Espaçamento entre os itens do menu */
+    gap: 30px;
 }
 
 .menu-links a:hover {
     color: var(--cor-primaria);
 }
+
 
 /* ==========================================================================
    4. BOTÕES (Componentes Reutilizáveis)
@@ -180,6 +183,7 @@ ul {
     flex: 1; /* Ocupa os outros 50% do espaço */
     display: flex;
     justify-content: center;
+    
 }
 
 .hero-imagem img {
@@ -187,6 +191,7 @@ ul {
     height: auto;
     /* Adiciona uma animação suave de flutuação para dar vida à página */
     animation: flutuar 3s ease-in-out infinite; 
+    border-radius: 16px;
 }
 
 @keyframes flutuar {
@@ -275,15 +280,14 @@ ul {
         flex-direction: column; /* Cards empilhados um embaixo do outro */
     }
     
-    .menu-links {
-        display: none; /* Em um cenário real, aqui entraria um menu Hamburguer */
-    }
+    
 }
 
+
 /* ==========================================================================
-   9. MENU HAMBÚRGUER (MOBILE)
+   9. MENU HAMBÚRGUER E RESPONSIVIDADE (MOBILE)
    ========================================================================== */
-/* Esconde o botão no desktop */
+/* Botão do menu fica oculto no Desktop */
 .menu-toggle {
     display: none; 
     flex-direction: column;
@@ -293,10 +297,9 @@ ul {
     background: transparent;
     border: none;
     cursor: pointer;
-    z-index: 1000; /* Fica acima do menu aberto */
+    z-index: 1000;
 }
 
-/* Estilo das 3 linhas do hambúrguer */
 .menu-toggle .linha {
     width: 100%;
     height: 3px;
@@ -305,46 +308,279 @@ ul {
     transition: all 0.3s ease;
 }
 
+/* Regras aplicadas APENAS em telas menores que 768px (Celulares) */
 @media (max-width: 768px) {
-    /* Mostra o botão no mobile */
+    
     .menu-toggle {
-        display: flex; 
+        display: flex; /* Mostra o botão hambúrguer */
     }
 
-    /* Transforma os links em um menu flutuante oculto */
+    /* Sobrescreve o .menu-links do desktop para esconder na tela de celular */
     .menu-links {
         position: absolute;
-        top: 70px; /* Altura aproximada do cabeçalho */
+        top: 80px; /* Altura do cabeçalho */
         left: 0;
         width: 100%;
         background-color: var(--cor-branco);
         flex-direction: column;
-        align-items: center;
-        gap: 20px;
         padding: 30px 0;
         box-shadow: var(--sombra-hover);
         
-        /* Esconde o menu puxando ele para cima e tirando a opacidade */
+        /* Esconde o menu */
         transform: translateY(-150%);
         opacity: 0;
+        pointer-events: none; /* Impede que o menu invisível bloqueie cliques */
         transition: all 0.3s ease;
-        z-index: 999;
     }
 
-    /* Classe que o JavaScript vai adicionar para mostrar o menu */
+    /* Classe ativada pelo JavaScript para mostrar o menu */
     .menu-links.ativo {
         transform: translateY(0);
         opacity: 1;
+        pointer-events: auto;
     }
     
-    /* EFEITO DO X: Animação das linhas quando a classe ativo é adicionada no botão */
+    /* Animação do botão virando um "X" */
     .menu-toggle.ativo .linha:nth-child(1) {
         transform: translateY(9.5px) rotate(45deg);
     }
     .menu-toggle.ativo .linha:nth-child(2) {
-        opacity: 0; /* A linha do meio some */
+        opacity: 0;
     }
     .menu-toggle.ativo .linha:nth-child(3) {
         transform: translateY(-9.5px) rotate(-45deg);
+    }
+}
+
+/* Adicione esta regra logo abaixo do Reset CSS (Seção 2) */
+html {
+    /* Faz a tela deslizar suavemente ao clicar em links de âncora (#campanhas) */
+    scroll-behavior: smooth;
+}
+
+/* ==========================================================================
+   10. VITRINE DE CAMPANHAS (CSS GRID)
+   ========================================================================== */
+.vitrine-campanhas {
+    padding: 60px 0;
+    /* Compensa a altura do menu fixo (sticky) para o título não ficar escondido ao rolar */
+    scroll-margin-top: 80px; 
+}
+
+.cabecalho-secao {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.cabecalho-secao h3 {
+    font-size: 2rem;
+    color: var(--cor-primaria);
+    margin-bottom: 10px;
+}
+
+.cabecalho-secao p {
+    color: var(--cor-texto-claro);
+    font-size: 1.05rem;
+}
+
+/* CSS Grid responsivo automático: cria quantas colunas couberem com no mínimo 300px */
+.grid-campanhas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.card-campanha {
+    background-color: var(--cor-branco);
+    border: var(--borda-padrao);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: var(--sombra-leve);
+    
+    /* Flexbox em coluna para empurrar o botão sempre para o fundo do card */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-campanha:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sombra-hover);
+    border-color: var(--cor-primaria);
+}
+
+/* Badge (etiqueta) de Status da Campanha */
+.badge-status {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 4px 12px;
+    border-radius: 20px; /* Formato de pílula */
+    margin-bottom: 15px;
+}
+
+.badge-status.ativa {
+    background-color: var(--cor-fundo-card); /* Verde Sálvia */
+    color: var(--cor-primaria);              /* Verde Folha */
+}
+
+.card-campanha h4 {
+    font-size: 1.3rem;
+    color: var(--cor-texto);
+    margin-bottom: 12px;
+}
+
+.descricao-campanha {
+    color: var(--cor-texto-claro);
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+    /* flex-grow: 1 faz o texto ocupar o espaço disponível, alinhando os botões de todos os cards */
+    flex-grow: 1; 
+}
+
+.rodape-card {
+    width: 100%;
+}
+
+/* Modificador para o botão ocupar 100% da largura do card */
+.btn-bloco {
+    display: block;
+    width: 100%;
+    text-align: center;
+    border:none;
+}
+
+/* ==========================================================================
+   11. FORMULÁRIOS (LOGIN E CADASTRO)
+   ========================================================================== */
+.container-form {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 50px 20px;
+    min-height: 75vh; /* Garante que o rodapé fique empurrado para baixo */
+}
+
+.card-form {
+    background-color: var(--cor-branco);
+    border: var(--borda-padrao);
+    border-radius: 12px;
+    padding: 40px;
+    width: 100%;
+    max-width: 650px; /* Largura ideal para o formulário de cadastro */
+    box-shadow: var(--sombra-leve);
+}
+
+/* Modificador para deixar a caixa de Login mais compacta */
+.card-form-pequeno {
+    max-width: 450px;
+}
+
+.cabecalho-form {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.cabecalho-form h2 {
+    color: var(--cor-primaria);
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+}
+
+.cabecalho-form p {
+    color: var(--cor-texto-claro);
+    font-size: 0.95rem;
+}
+
+/* Estilização do Fieldset e Legend */
+.grupo-secao {
+    border: none;
+    border-top: var(--borda-padrao);
+    padding-top: 20px;
+    margin-bottom: 25px;
+}
+
+.grupo-secao legend {
+    font-weight: 700;
+    color: var(--cor-primaria);
+    font-size: 1rem;
+    padding-right: 12px;
+}
+
+/* Container de cada par Label + Input */
+.grupo-input {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+    width: 100%;
+}
+
+.grupo-input label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--cor-texto);
+}
+
+.grupo-input input {
+    padding: 12px 14px;
+    border: var(--borda-padrao);
+    border-radius: 6px;
+    font-family: var(--fonte-principal);
+    font-size: 1rem;
+    color: var(--cor-texto);
+    background-color: var(--cor-branco);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Feedback visual de foco (IHC / Acessibilidade) */
+.grupo-input input:focus {
+    outline: none;
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 0 3px var(--cor-fundo-card); /* Halo verde sálvia suave */
+}
+
+.texto-ajuda {
+    font-size: 0.8rem;
+    color: var(--cor-texto-claro);
+    margin-top: 5px;
+}
+
+/* Grid de 2 colunas para campos lado a lado (ex: Cidade e UF) */
+.linha-dupla {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.rodape-form {
+    text-align: center;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: var(--borda-padrao);
+    font-size: 0.95rem;
+    color: var(--cor-texto-claro);
+}
+
+.rodape-form a {
+    color: var(--cor-primaria);
+    font-weight: 600;
+}
+
+.rodape-form a:hover {
+    text-decoration: underline;
+}
+
+/* Responsividade dos formulários no celular */
+@media (max-width: 768px) {
+    .card-form {
+        padding: 25px 20px;
+    }
+
+    .linha-dupla {
+        grid-template-columns: 1fr; /* Empilha os campos em 1 coluna no mobile */
+        gap: 0;
     }
 }

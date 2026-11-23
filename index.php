@@ -30,8 +30,31 @@
                 <p>Navegue pelas campanhas ativas e escolha onde sua doação fará diferença.</p>
             </div>
             <div class="card">
-                <h4></h4>
+                <h4>3. Solidariza-se</h4>
+                <p></p>
             </div>
+        </div>
+    </section>
+    
+    <section id="campanhas" class="vitrine-campanhas">
+        <div class="cabecalho-secao">
+            <h3>Campanhas Ativas</h3>
+            <p>Escoha a causa e faça a diferença hoje mesmo.</p>
+        </div>
+        <div class="grid-campanha">
+            <article class="card-campanha">
+                <span class="badge-status ativa">Ativa</span>
+                <h4>Campanha do Agasalho</h4>
+                <p class="descricao-campanha">Arrecadação de roupas de inverno, cobertores e calçados em bom estado para famílias em situação de vulnerabilidade.</p>
+                <div class="rodape-card">
+                    <a href="cadastro.php" class="btn-bloco btn-sustentavel">Quero doar</a>
+                </div>
+            </article>
+            <article class="card-campanha">
+                <span class="badge-status ativa">Ativa</span>
+                <h4></h4>
+                <p class="descricao-campanha"></p>
+            </article>
         </div>
     </section>
 </main>
